@@ -4,33 +4,36 @@
 #include "semphr.h"
 #include "i2c1.h"
 
+#define  SDA_PIN  GPIO_Pin_7
+#define  SCL_PIN  GPIO_Pin_6
+
 void __init() {
 	GPIO_InitTypeDef GPIO_InitStruct;
-	GPIO_InitStruct.GPIO_Pin =  GPIO_Pin_6 | GPIO_Pin_7;
+	GPIO_InitStruct.GPIO_Pin =  SCL_PIN | SDA_PIN;
 	GPIO_InitStruct.GPIO_Speed = GPIO_Speed_50MHz;   	//50M
-	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_Out_OD;       //¿ªÂ©Êä³ö
+	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_Out_OD;       //Â¿ÂªÃ‚Â©ÃŠÃ¤Â³Ã¶
 	GPIO_Init(GPIOB, &GPIO_InitStruct);
 }
 
 bool __sck(bool b) {
 	if (b) {
-		GPIO_SetBits(GPIOB, GPIO_Pin_6);
+		GPIO_SetBits(GPIOB, SCL_PIN);
 	} else {
-		GPIO_ResetBits(GPIOB, GPIO_Pin_6);
+		GPIO_ResetBits(GPIOB, SCL_PIN);
 	}
 
-	return GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_6);
+	return GPIO_ReadInputDataBit(GPIOB, SCL_PIN);
 }
 
 
 bool __sda(bool b) {
 	if (b) {
-		GPIO_SetBits(GPIOB, GPIO_Pin_7);
+		GPIO_SetBits(GPIOB, SDA_PIN);
 	} else {
-		GPIO_ResetBits(GPIOB, GPIO_Pin_7);
+		GPIO_ResetBits(GPIOB, SDA_PIN);
 	}
 
-	return GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_7);
+	return GPIO_ReadInputDataBit(GPIOB, SDA_PIN);
 }
 
 

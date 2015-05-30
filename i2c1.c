@@ -4,6 +4,10 @@
 #include "semphr.h"
 #include "i2c1.h"
 
+#define  GPIOn    GPIOB
+#define  SDA_PIN  GPIO_Pin_7
+#define  SCL_PIN  GPIO_Pin_6
+
 void __init() {
 	GPIO_InitTypeDef GPIO_InitStruct;
 	GPIO_InitStruct.GPIO_Pin =  SCL_PIN | SDA_PIN;

@@ -47,7 +47,6 @@ static void __task(void *unused) {
 
 	while (1) {
 		float thisTemp = 0;
-		uint16_t thisVb = 0;
 
 		vTaskDelay(TERM_UPLOAD_DATA_TIME / __TIMES__);
 

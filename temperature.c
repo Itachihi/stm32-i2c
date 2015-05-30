@@ -22,8 +22,8 @@ float readTemperature(void) {
 	float temp;
 	uint8_t buf[2];
 	buf[0] = LM75_TEMP_REG;
-	I2C1_Write(0x48, buf, 1);
-	I2C1_Read(0x48, buf, 2);
+	I2C1_Write(LM75_ADDRESS, buf, 1);
+	I2C1_Read(LM75_ADDRESS, buf, 2);
 	temp = ((buf[0] << 8) + buf[1]) >> 5;
 	if (temp > 0x3ff) {
 		temp = 0.125 * (temp - 2048);

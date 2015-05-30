@@ -44,7 +44,7 @@ static const SoftI2C __i2c1 = {
 
 static xSemaphoreHandle __semaphore = NULL;
 
-int I2C1_Init() {
+void I2C1_Init() {
 	if (__semaphore == NULL) {
 		vSemaphoreCreateBinary(__semaphore);
 	}
